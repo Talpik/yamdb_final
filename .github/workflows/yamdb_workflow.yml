@@ -19,9 +19,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Lint with flake8
-        run: flake8 .
-
       - name: Test with pytest
         run: pytest
 
@@ -44,23 +41,24 @@ jobs:
           push: true
           tags: talpik/yamdb:latest
 
-  build:
+  copy:
     name: Copy docker-compose to VM
     runs-on: ubuntu-latest
+    needs: dockerize
     steps:
-    - uses: actions/checkout@master
-    - name: copy file via ssh password
-      uses: appleboy/scp-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
-        source: "docker-compose.yaml"
-        target: "yamdb_final"  
+      - uses: actions/checkout@master
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          source: "docker-compose.yaml"
+          target: "yamdb_final"  
   
   deploy:
     runs-on: ubuntu-latest
-    needs: dockerize
+    needs: copy
     steps:
     - name: executing remote ssh commands to deploy
       uses: appleboy/ssh-action@master
