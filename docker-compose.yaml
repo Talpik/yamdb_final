@@ -4,7 +4,6 @@ volumes:
   postgres_data:
   static_value:
 
-
 networks:
   private:
   # This instructions for SSL auto
