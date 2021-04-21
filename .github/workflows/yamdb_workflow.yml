@@ -54,7 +54,6 @@ jobs:
           username: ${{ secrets.USER }}
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
-          password: ${{ secrets.PASSPHRASE }}
           source: "docker-compose.yaml"
           target: "yamdb_final"  
   
@@ -80,7 +79,7 @@ jobs:
 
   send_message:
     runs-on: ubuntu-latest
-    needs: dockerize
+    needs: deploy
     steps:
       - name: Send message
         uses: appleboy/telegram-action@master
