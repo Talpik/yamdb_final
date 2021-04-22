@@ -17,8 +17,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
+          pip install flake8 pytest
           pip install -r requirements.txt
 
+      - name: Lint with flake8
+          run: flake8 --ignore E501,F401 ./api/
       - name: Test with pytest
         run: pytest
 
@@ -34,7 +37,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-      
+
       - name: Build and push
         uses: docker/build-push-action@v2
         with:
@@ -55,8 +58,8 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           passphrase: ${{ secrets.PASSPHRASE }}
           source: "docker-compose.yaml"
-          target: "yamdb_final"  
-  
+          target: "yamdb_final"
+
   deploy:
     runs-on: ubuntu-latest
     needs: copy
@@ -76,6 +79,9 @@ jobs:
           sudo docker-compose down -v
           sudo docker-compose pull
           sudo docker-compose up -d
+          sudo docker exec -it yamdb_final_web_1 python3 manage.py migrate --noinput
+          sudo docker exec -it yamdb_final_web_1 python3 manage.py loaddata fixtures.json
+          sudo docker exec -it yamdb_final_web_1 python3 manage.py collectstatic --noinput
 
   send_message:
     runs-on: ubuntu-latest
