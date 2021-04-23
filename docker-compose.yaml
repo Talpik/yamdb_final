@@ -4,12 +4,6 @@ volumes:
   postgres_data:
   static_value:
 
-# networks:
-  # private:
-  # This instructions for SSL auto
-  # proxy:
-    # external: true
-
 services:
   database:
     image: postgres:12.4
@@ -18,8 +12,7 @@ services:
     env_file:
       - ./.env
     restart: always
-    # networks:
-      # - private
+
   web:
     image: talpik/yamdb:latest
     restart: unless-stopped
@@ -31,8 +24,7 @@ services:
       - ./.env
     volumes:
       - ./static_value:/code/static
-    # networks:
-      # - private
+
   nginx:
     image: nginx:latest
     restart: always
@@ -44,15 +36,3 @@ services:
       - web
     ports:
       - "80:80"
-    # networks:
-      # - private
-
-    # This instructions for SSL auto
-    # environment:
-      # VIRTUAL_HOST: web.talpa.ru
-      # LETSENCRIPT_HOST: web.talpa.ru
-      # LETSENCRIPT_EMAIL: talpa1989@gmail.com
-    # networks:
-      # - proxy
-    # expose:
-      # - 80
