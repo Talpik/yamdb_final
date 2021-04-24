@@ -1,5 +1,5 @@
 # Приложение YaMDb c REST API
-![api_yamdb](https://github.com/Talpik/yamdb_final/workflows/api_yamdb_workflow/badge.svg)
+![api_yamdb](https://github.com/Talpik/yamdb_final/actions/workflows/api_yamdb_workflow.yml/badge.svg)
 * Приложение YaMDb с умеет собирать отзывы пользователей на произведения. 
 * Произведения можно разделить на различные категории (например: Фильмы, Игры, Музыка, Книги). 
 * Произведению может быть присвоен жанр из созданного списка (например: Фантастика, Рок, Стратегии). 
