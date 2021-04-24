@@ -28,14 +28,14 @@
 <br> `docker exec -it <container id> python loaddata fixtures.json`
 ## Настройка доступных хостов
 Настройка доступных хостов осуществляется в файле *.env*:
-<br> `ALLOWED_HOSTS=127.0.0.1,localhost`
+<br> `ALLOWED_HOSTS=84.252.136.27,localhost`
 <br> Через запятую можно добавлять другие значения.
 ## Основные точки доступа
-1. Админка:          <br>`127.0.0.1/admin`
+1. Админка:          <br>`84.252.136.27/admin`
 2. API v1.0:         <br>`127.0.0.1/api/v1`
-3. Все произведения: <br>`127.0.0.1/api/v1/titles`
-4. Все жанры:        <br>`127.0.0.1/api/v1/genres`
-5. Все пользователи: <br>`127.0.0.1/api/v1/users` (нужен токен авторизации)
-6. Все категории:    <br>`127.0.0.1/api/v1/categories`
-7. Все отзывы:       <br>`127.0.0.1/api/v1/titles/<titile_id>/reviews/` (где <titile_id> - целое числа)
-8. Все комментарии:  <br>`127.0.0.1/api/v1/titles/<titile_id>/reviews/<reviews_id>/comments` (где <titile_id> и <reviews_id> - целые числа)
+3. Все произведения: <br>`84.252.136.27/api/v1/titles`
+4. Все жанры:        <br>`84.252.136.27/api/v1/genres`
+5. Все пользователи: <br>`84.252.136.27/api/v1/users` (нужен токен авторизации)
+6. Все категории:    <br>`84.252.136.27/api/v1/categories`
+7. Все отзывы:       <br>`84.252.136.27/api/v1/titles/<titile_id>/reviews/` (где <titile_id> - целое числа)
+8. Все комментарии:  <br>`84.252.136.27/api/v1/titles/<titile_id>/reviews/<reviews_id>/comments` (где <titile_id> и <reviews_id> - целые числа)
